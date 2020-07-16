@@ -19,7 +19,7 @@ const LoginValidationSchema = Joi.object().keys({
   password: Joi.string().required()
 });
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/home-tution')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://MohitSoni:<password>@cluster0-y9yts.mongodb.net/test')
  .then(() => console.log('Connected…'))
  .catch(err => console.error(err.message));
 // Fetch Site Users
