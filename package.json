@@ -1,0 +1,28 @@
+{
+  "name": "applytech-classroom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+  },
+  "author": "Mohit Soni",
+  "license": "ISC",
+  "dependencies": {
+    "admin-bro": "^2.8.0",
+    "admin-bro-expressjs": "^2.1.1",
+    "admin-bro-mongoose": "^0.5.2",
+    "bcrypt": "^5.0.0",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-formidable": "^1.2.0",
+    "express-session": "^1.17.1",
+    "helmet": "^3.23.3",
+    "joi": "^14.3.1",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.24"
+  }
+}
