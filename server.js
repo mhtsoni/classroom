@@ -1,6 +1,7 @@
 const express = require('express')
 const Joi = require('joi');
 const app = express()
+const routes = require('./routes');
 require('./prod.js')(app);
 // Admin Bro
 const AdminBro = require('admin-bro')
@@ -119,6 +120,8 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
     },
     cookiePassword: 'some-secret-password-used-to-secure-cookie',
   })
+
+app.use('/', routes);
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static('client/build'));
   // Handle React routing, return all requests to React app
