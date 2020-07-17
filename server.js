@@ -1,7 +1,6 @@
 const express = require('express')
 const Joi = require('joi');
 const app = express()
-const routes = require('./routes');
 require('./prod.js')(app);
 // Admin Bro
 const AdminBro = require('admin-bro')
