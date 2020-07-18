@@ -34,7 +34,7 @@
     "react-dom": "^16.13.1",
     "react-html5-camera-photo": "^1.5.4",
     "react-iframe": "^1.8.0",
-    "react-jitsi": "^1.0.4",
+    "react-jutsu": "^2.2.0",
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
     "react-scripts": "3.4.1",

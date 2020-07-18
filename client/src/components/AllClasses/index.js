@@ -7,17 +7,20 @@ const { Search } = Input;
 function AllClasses() {
     const [all_courses,setCourses]=useState([]);
     var courses=[];
-    useEffect(()=>((async ()=>{
+    useEffect(
+        
+        ()=>((async ()=>{
         axios.post('api/courses',{}).then((res)=>{
             setCourses(res.data);
             }).catch((err)=>{
                 console.log(err.message)
             })
         })()
+        
     ),[]);
 
     (async ()=>{
-        axios.post('api/courses',{}).then((res)=>{
+        await axios.post('api/courses',{}).then((res)=>{
             courses=res.data;
             }).catch((err)=>{
                 console.log(err.message)

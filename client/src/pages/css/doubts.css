@@ -1,0 +1,45 @@
+  
+@media only screen and (min-width: 900px) {
+    
+    body {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+      }
+    .cornfrence-form{
+      margin: 1%;
+      width:98%;
+    }
+  }
+  .cornfrence-form{
+    padding: 40px 0px;
+    box-shadow: 5px 10px #888888;
+    width:80%;
+    background-color: rgb(29, 25, 25);
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .cornfrence-form input{
+      padding: 5px;
+      display: block;
+      margin: auto;
+      border-radius: 5px;
+      height: 30px;
+      width: 80%;
+  }
+  .cornfrence-form button{
+      display: block;
+      margin: auto;
+      width: 30%;
+  }
+  .cornfrence-form button:hover{
+      background-color: #33D1F0;
+  }
+  .cornfrencing-branding{
+      font-size: 30px;
+      color: red;
+      text-align: center;
+  }
