@@ -8,7 +8,6 @@ function AllClasses() {
     const [all_courses,setCourses]=useState([]);
     var courses=[];
     useEffect(
-        
         ()=>((async ()=>{
         axios.post('api/courses',{}).then((res)=>{
             setCourses(res.data);

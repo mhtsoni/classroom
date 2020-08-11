@@ -12,28 +12,13 @@ import {
 } from '@ant-design/icons';
 import './index.css';
 import Logo from '../../assets/images/Logo.png';
+import LogOut from '../Logout';
 const menu= (
   <Menu mode="horizontal">
                 <Menu.Item key="0">
                   <Link to="/">
                     <img className="logo1" src={Logo} alt='logo'/>
                   </Link>
-                </Menu.Item>
-                
-                <Menu.Item key="1" icon={<UserOutlined />}>
-                  <Link to="/">Live Class</Link>
-                </Menu.Item>
-                <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                  <Link to="/about">About</Link>
-                </Menu.Item>
-                <Menu.Item key="3" icon={<VideoCameraOutlined />}>
-                  <Link to="/contact">Contact Us</Link>
-                </Menu.Item>
-                <Menu.Item key="4" icon={<VideoCameraOutlined />}>
-                  <Link to="/doubts">Doubts</Link>
-                </Menu.Item>
-                <Menu.Item key="5" icon={<VideoCameraOutlined />}>
-                  <Link to="/board">White Board</Link>
                 </Menu.Item>
               </Menu>
 )

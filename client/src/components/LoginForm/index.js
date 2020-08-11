@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {connect} from 'react-redux'
 import 'antd/dist/antd.css';
 import {Input,Alert } from 'antd';
-import {LoginWrapper} from './index.style'
+import {LoginWrapper,LoginBody} from './index.style'
 import {submit,passChange,empIdChange} from './states/actions'
 import axios from 'axios'
 function LoginForm(props) {
@@ -27,15 +27,17 @@ function LoginForm(props) {
                 })
         }
         return (
-            <LoginWrapper title="LogIn" style={{ width: 300 }}>
-                {error && 
-                <Alert message={error} type="error" />}
-                <form>
-                    <Input className='inp' type="text" onChange={(e)=>props.handleEmpIdChange(e)} placeholder='Employee Id'/>
-                    <Input className='inp' type="text" onChange={(e)=>props.handlePassChange(e)} placeholder='Password'/>
-                    <Input type='submit' value="Log In" onClick={(e)=>Submit(e)}/>
-                </form>
-            </LoginWrapper>
+            <LoginBody>
+                <LoginWrapper title="LogIn" style={{ width: 300 }}>
+                    {error && 
+                    <Alert message={error} type="error" />}
+                    <form>
+                        <Input className='inp' type="text" onChange={(e)=>props.handleEmpIdChange(e)} placeholder='Employee Id'/>
+                        <Input className='inp' type="text" onChange={(e)=>props.handlePassChange(e)} placeholder='Password'/>
+                        <Input type='submit' value="Log In" onClick={(e)=>Submit(e)}/>
+                    </form>
+                </LoginWrapper>
+            </LoginBody>
         )
 }
 const mapStateToProps = (state) =>{

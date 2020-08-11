@@ -11,3 +11,7 @@ export const LoginWrapper = styled(Card)`
       margin-bottom:10px;
   }
 `;
+export const LoginBody = styled.div`
+  position: fixed;
+  background-image: url('../../../assets/images/banner.svg')
+`;

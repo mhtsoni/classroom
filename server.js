@@ -2,6 +2,8 @@ const express = require('express')
 const Joi = require('joi');
 const app = express()
 const path = require('path');
+const NewsAPI = require('newsapi');
+const newsapi = new NewsAPI('6cf91fa443ad498f9f641ba2275a2708');
 require('./prod.js')(app);
 // Admin Bro
 const AdminBro = require('admin-bro')
@@ -84,6 +86,21 @@ async function FetchSingleCourse(){
   })
 }
 FetchSingleCourse();
+  app.get('/api/news',(req,res)=>{
+      newsapi.v2.topHeadlines({
+        category: 'business',
+        language: 'en',
+        country: req.country_code
+      }).then(response => {
+          res.send(response);
+        /*
+          {
+            status: "ok",
+            articles: [...]
+          }
+        */
+      });
+  })
 /*const Works = mongoose.model('works', worksSchema);
 async function FetchWorkHistory(){
     app.post('/api/workhistory',async (req,res)=>{ 

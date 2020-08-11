@@ -27,22 +27,12 @@ import './index.css';
 import Logo from './assets/images/Logo.png';
 import NavBar from './components/Navbar'
 import  Cornfrence  from './pages/doubts';
+import LogOut from './components/Logout';
+import News from './components/News';
 const menu= (
   <Menu mode="inline">
                 <Menu.Item key="1" icon={<UserOutlined />}>
-                  <Link to="/">Live Class</Link>
-                </Menu.Item>
-                <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                  <Link to="/about">About</Link>
-                </Menu.Item>
-                <Menu.Item key="3" icon={<VideoCameraOutlined />}>
-                  <Link to="/contact">Contact Us</Link>
-                </Menu.Item>
-                <Menu.Item key="4" icon={<VideoCameraOutlined />}>
-                  <Link to="/doubts">Doubts</Link>
-                </Menu.Item>
-                <Menu.Item key="5" icon={<VideoCameraOutlined />}>
-                  <Link to="/board">White Board</Link>
+                  <Link to="/">Fetch News</Link>
                 </Menu.Item>
               </Menu>
 )
@@ -66,7 +56,7 @@ function App(props) {
                 <div>
               <img className="logo" src={Logo} alt='logo'/>
               <Button className="barsMenu" type="primary" onClick={showDrawer}>
-                Open
+                Menu
               </Button>
               </div>
               )}
@@ -88,7 +78,7 @@ function App(props) {
                     props.login && 
                         <Switch>
                           <Route exact path="/">
-                            <Index/>
+                            <News/>
                           </Route>
                           <Route path="/about">
                             <About/>
