@@ -1,120 +1,63 @@
-import React,{useState} from 'react';
-import LoginForm from './components/LoginForm'
-import { loginStore } from './redux-store/store';
-import {Provider} from 'react-redux'
-import 'antd/dist/antd.css';
-import {connect} from 'react-redux'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import Index from './pages';
-import About from './pages/about';
-import Contact from './pages/contact';
-import BoardPage from './pages/board';
-import PreviousClasses from './pages/previousClasses';
-import { Button,Drawer, Menu, Row } from 'antd';
-import {
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons';
-import './index.css';
-import Logo from './assets/images/Logo.png';
-import NavBar from './components/Navbar'
-import  Cornfrence  from './pages/doubts';
-import LogOut from './components/Logout';
-import News from './components/News';
-const menu= (
-  <Menu mode="inline">
-                <Menu.Item key="1" icon={<UserOutlined />}>
-                  <Link to="/">Fetch News</Link>
-                </Menu.Item>
-              </Menu>
-)
-function App(props) {
-  const [visible, setVisible] = useState(false);
+import React,{useEffect,useState} from 'react';
+import axios from 'axios';
+import './App.css';
+import Iframe from 'react-iframe'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+import Nav from './components/Nav';
 
-  const showDrawer = () => {
-    setVisible(true);
-  };
+import TouchEffect from './components/TouchEffect';
 
-  const onClose = () => {
-    setVisible(false);
-  };
-    return (
-        <div>
-          <Router>
-            <Provider store= {loginStore}>
-            <React.StrictMode>
-            <Row className='nav'>
-              {(window.innerWidth<=900) && !visible && (
-                <div>
-              <img className="logo" src={Logo} alt='logo'/>
-              <Button className="barsMenu" type="primary" onClick={showDrawer}>
-                Menu
-              </Button>
-              </div>
-              )}
-              {
-                !(window.innerWidth<=900) && (<NavBar/>)
-              }
-              <Drawer
-                title={<img className="logo" src={Logo} alt='logo'/>}
-                placement="right"
-                closable={false}
-                onClose={onClose}
-                visible={visible}
-              >
-                {menu}
-              </Drawer>
-            </Row>
-            
-              {
-                    props.login && 
-                        <Switch>
-                          <Route exact path="/">
-                            <News/>
-                          </Route>
-                          <Route path="/about">
-                            <About/>
-                          </Route>
-                          <Route path="/contact">
-                            <Contact/>
-                          </Route>
-                          <Route path="/previousclasses">
-                            <PreviousClasses/>
-                          </Route>
-                          <Route path="/doubts">
-                            <Cornfrence/>
-                          </Route>
-                          <Route path="/board">
-                            <BoardPage/>
-                          </Route>
-                        </Switch>
-                    }
-                    {
-                    !props.login &&
-                    <LoginForm/>
-                    }
-                  </React.StrictMode>
-                </Provider>
-              </Router>
-            </div>
-      )
-    }
-  
-const mapStateToProps = (state) =>{
-  return {
-      employee_id : state.employee_id,
-      password : state.password,
-      login : state.login,
-      userName : state.userName
+function App() {
+  const [description,setdescription]=useState('No Description Available');
+  const [course_name,setcourse_name]=useState('Get Started');
+  const [isSliding,setisSliding]=useState(false);
+  const [src,setsrc]=useState('http://www.youtube.com/embed/xDMP3i36naA');
+  const changeVideo = ()=>{
+    setisSliding(true);
+    axios.get(`http://localhost:3030/`)
+      .then(res => {
+        console.log(res);
+        setsrc(res.data[0].video);
+        setdescription(res.data[0].description);
+        setcourse_name(res.data[0].course_name);
+        setisSliding(false);
+      })
+      .catch(err=>{console.log(err.message)})
   }
+
+  return (
+    <div className="App">
+      <Nav description={description} course_name={course_name}/>
+      <Iframe url={src}
+      id="myId"
+      className={`video ${isSliding ? "slide" : ""}`}
+      display="initial"
+      position="relative" allowfullscreen  />
+      <div className="draggable">
+          <Swiper className="swiper"
+            spaceBetween={50}
+            onTransitionStart={() => changeVideo()}
+          >
+            <SwiperSlide >
+            </SwiperSlide>
+            <SwiperSlide >
+            </SwiperSlide>
+          </Swiper>
+      </div>
+      <div className="draggable1">
+          <Swiper className="swiper"
+            spaceBetween={50}
+            onTransitionStart={() => changeVideo()}
+          >
+            <SwiperSlide >
+            </SwiperSlide>
+            <SwiperSlide >
+            </SwiperSlide>
+          </Swiper>
+      </div>
+    </div>
+  );
 }
 
-export default connect(mapStateToProps)(App)
+export default App;
