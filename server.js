@@ -62,12 +62,9 @@ const router = AdminBroExpressjs.buildAuthenticatedRouter(adminBro, {
     cookiePassword: 'some-secret-password-used-to-secure-cookie',
   })
 
-if(process.env.NODE_ENV === 'production'){
-  app.use('/', express.static(path.join(__dirname, '/client/build')));
-  // Handle React routing, return all requests to React app
-  app.use('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.js'));
-  });
+
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
 }
 
 app.use(adminBro.options.rootPath, router)
